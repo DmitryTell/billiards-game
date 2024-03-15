@@ -43,10 +43,14 @@
     "stylelint-processor-styled-components": "^1.10.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "craco eject",
+    "lint": "eslint src",
+    "lint:fix": "npm run lint -- --fix",
+    "eslint": "npm run lint && npm run lint:fix",
+    "stylelint": "npx stylelint \"**/*.tsx\""
   },
   "eslintConfig": {
     "extends": [
