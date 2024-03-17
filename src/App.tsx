@@ -1,3 +1,13 @@
+import { Layout, Canvas } from '@components/';
+
+import { GlobalStyle } from './style';
+
+
 export const App = () => (
-  <div />
+  <>
+    <GlobalStyle />
+    <Layout>
+      <Canvas />
+    </Layout>
+  </>
 );
