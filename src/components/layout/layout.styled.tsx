@@ -8,6 +8,7 @@ export const LayoutWrapper = styled.div`
 `;
 
 export const LayoutContainer = styled.div`
+    position: relative;
     max-width: 1440px;
     width: 100%;
     min-height: 100%;

@@ -1,9 +1,18 @@
-const spheres = [
+const drawSphere = (ctx: CanvasRenderingContext2D, x: number, y: number, radius: number, color: string) => {
+  ctx.beginPath();
+  ctx.arc(x, y, radius, 0, Math.PI * 2);
+  ctx.fillStyle = color;
+  ctx.fill();
+};
+
+export const friction = 0.98;
+
+export const spheres = [
   {
     x: 50, y: 50, radius: 30, color: 'red', dx: 0, dy: 0, mass: 1
   },
   {
-    x: 150, y: 150, radius: 50, color: 'blue', dx: 0, dy: -0, mass: 2
+    x: 150, y: 150, radius: 50, color: 'blue', dx: 0, dy: 0, mass: 2
   },
   {
     x: 600, y: 400, radius: 45, color: 'yellow', dx: 0, dy: 0, mass: 1.5
@@ -15,15 +24,6 @@ const spheres = [
     x: 400, y: 350, radius: 45, color: 'darkblue', dx: 0, dy: 0, mass: 1.5
   },
 ];
-
-const friction = 0.98;
-
-const drawSphere = (ctx: CanvasRenderingContext2D, x: number, y: number, radius: number, color: string) => {
-  ctx.beginPath();
-  ctx.arc(x, y, radius, 0, Math.PI * 2);
-  ctx.fillStyle = color;
-  ctx.fill();
-};
 
 export const updateFrame = (ctx: CanvasRenderingContext2D) => {
   ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
