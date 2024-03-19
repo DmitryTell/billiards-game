@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 
 import { Menu } from '../menu';
-import { updateFrame, spheres } from './lib';
+import { spheres, updateFrame } from './lib';
 import * as Styled from './canvas.styled';
 
 
@@ -53,8 +53,8 @@ export const Canvas = () => {
         const dx = offsetX - startPos.x;
         const dy = offsetY - startPos.y;
 
-        sphere.dx = -dx;
-        sphere.dy = -dy;
+        sphere.dx = -(dx / 5);
+        sphere.dy = -(dy / 5);
 
         setIsDragging(false);
       }
@@ -114,7 +114,7 @@ export const Canvas = () => {
         ref={ canvasRef }
         height={ 600 }
         width={ 1000 }
-        onClick={ handleSphereClick }
+        onDoubleClick={ handleSphereClick }
         onMouseDown={ handleMouseDown }
         onMouseMove={ handleMouseMove }
         onMouseUp={ handleMouseUp }
