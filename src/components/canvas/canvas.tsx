@@ -8,22 +8,55 @@ import * as Styled from './canvas.styled';
 export const Canvas = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
+  const [startPos, setStartPos] = useState({ x: 0, y: 0 });
+  const [isDragging, setIsDragging] = useState<boolean>(false);
   const [selectedSphere, setSelectedSphere] = useState<number | null>(null);
   const [isMenuVisible, setIsMenuVisible] = useState<boolean>(false);
   const [newColor, setNewColor] = useState<string>('');
 
-  const handleMouseMove = (event: React.MouseEvent<HTMLCanvasElement>) => {
-    const canvas = event.target as HTMLCanvasElement;
-    const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
+  const handleMouseDown = (event: React.MouseEvent<HTMLCanvasElement>) => {
     const { offsetX, offsetY } = event.nativeEvent;
 
+    spheres.forEach((sphere) => {
+      sphere.isSelected = false;
+    });
     spheres.forEach((sphere) => {
       const dx = offsetX - sphere.x;
       const dy = offsetY - sphere.y;
       const distance = Math.sqrt(dx ** 2 + dy ** 2);
 
       if (distance <= sphere.radius) {
-        updateFrame(ctx);
+        sphere.isSelected = true;
+
+        setStartPos({ x: offsetX, y: offsetY });
+        setIsDragging(true);
+      }
+    });
+  };
+
+  const handleMouseMove = (event: React.MouseEvent<HTMLCanvasElement>) => {
+    const { offsetX, offsetY } = event.nativeEvent;
+
+    spheres.forEach((sphere) => {
+      if (isDragging && sphere.isSelected) {
+        sphere.x = offsetX;
+        sphere.y = offsetY;
+      }
+    });
+  };
+
+  const handleMouseUp = (event: React.MouseEvent<HTMLCanvasElement>) => {
+    const { offsetX, offsetY } = event.nativeEvent;
+
+    spheres.forEach((sphere) => {
+      if (isDragging && sphere.isSelected) {
+        const dx = offsetX - startPos.x;
+        const dy = offsetY - startPos.y;
+
+        sphere.dx = -dx;
+        sphere.dy = -dy;
+
+        setIsDragging(false);
       }
     });
   };
@@ -61,12 +94,9 @@ export const Canvas = () => {
 
   useEffect(() => {
     const canvas = canvasRef.current;
+    const ctx = canvas?.getContext('2d');
 
-    if (!canvas) return;
-
-    const ctx = canvas.getContext('2d');
-
-    if (!ctx) return;
+    if (!canvas || !ctx) return;
 
     requestAnimationFrame(() => updateFrame(ctx));
   }, []);
@@ -85,7 +115,9 @@ export const Canvas = () => {
         height={ 600 }
         width={ 1000 }
         onClick={ handleSphereClick }
+        onMouseDown={ handleMouseDown }
         onMouseMove={ handleMouseMove }
+        onMouseUp={ handleMouseUp }
       />
     </>
   );

@@ -5,23 +5,23 @@ const drawSphere = (ctx: CanvasRenderingContext2D, x: number, y: number, radius:
   ctx.fill();
 };
 
-export const friction = 0.98;
+const friction = 0.98;
 
 export const spheres = [
   {
-    x: 50, y: 50, radius: 30, color: 'red', dx: 0, dy: 0, mass: 1
+    x: 50, y: 50, radius: 30, color: 'red', dx: 0, dy: 0, mass: 1, isSelected: false
   },
   {
-    x: 150, y: 150, radius: 50, color: 'blue', dx: 0, dy: 0, mass: 2
+    x: 150, y: 150, radius: 50, color: 'blue', dx: 0, dy: 0, mass: 2, isSelected: false
   },
   {
-    x: 600, y: 400, radius: 45, color: 'yellow', dx: 0, dy: 0, mass: 1.5
+    x: 600, y: 400, radius: 45, color: 'yellow', dx: 0, dy: 0, mass: 1.5, isSelected: false
   },
   {
-    x: 700, y: 200, radius: 60, color: 'green', dx: 0, dy: 0, mass: 2.5
+    x: 700, y: 200, radius: 60, color: 'green', dx: 0, dy: 0, mass: 2.5, isSelected: false
   },
   {
-    x: 400, y: 350, radius: 45, color: 'darkblue', dx: 0, dy: 0, mass: 1.5
+    x: 400, y: 350, radius: 45, color: 'darkblue', dx: 0, dy: 0, mass: 1.5, isSelected: false
   },
 ];
 
