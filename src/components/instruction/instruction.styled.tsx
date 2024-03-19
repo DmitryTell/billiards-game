@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
     position: absolute;
     top: 230px;
-    left: 360px;
+    left: 500px;
     z-index: 2;
     width: 450px;
     padding: 20px 15px;
