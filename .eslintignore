@@ -1,8 +1,0 @@
-# dependencies
-node_modules
-
-# public & assets
-public
-
-.husky
-craco.config.js
