@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 
+import { Instruction } from '../instruction';
 import { Menu } from '../menu';
 import { spheres, updateFrame } from './lib';
 import * as Styled from './canvas.styled';
@@ -8,6 +9,7 @@ import * as Styled from './canvas.styled';
 export const Canvas = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
+  const [isInstruction, setIsInstruction] = useState<boolean>(true);
   const [startPos, setStartPos] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [selectedSphere, setSelectedSphere] = useState<number | null>(null);
@@ -103,6 +105,9 @@ export const Canvas = () => {
 
   return (
     <>
+      { isInstruction && (
+        <Instruction onClick={ () => setIsInstruction(false) } />
+      ) }
       { isMenuVisible && (
         <Menu
           newColor={ newColor }
