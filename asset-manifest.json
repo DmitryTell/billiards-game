@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/static/js/main.fbce643b.js",
-    "index.html": "/index.html",
-    "main.fbce643b.js.map": "/static/js/main.fbce643b.js.map"
+    "main.js": "/billiards-game/static/js/main.3fe44ed5.js",
+    "index.html": "/billiards-game/index.html",
+    "main.3fe44ed5.js.map": "/billiards-game/static/js/main.3fe44ed5.js.map"
   },
   "entrypoints": [
-    "static/js/main.fbce643b.js"
+    "static/js/main.3fe44ed5.js"
   ]
 }
